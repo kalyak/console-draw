@@ -70,11 +70,12 @@ const drawCanvas = (canvas, setCanvas, newInstruction) => {
       const x = parseInt(commandBreak[1]);
       const y = parseInt(commandBreak[2]);
       const c = commandBreak[3];
+      const Barriers = ["x", "-", "|", c];
       console.log(commandBreak);
       for (let i = -1; i <= 1; i++) {
         for (let j = -1; j <= 1; j++) {
           console.log("Evaluating: ", x + i, y + j);
-          if (updatedCanvas[y + j][x + i] === null) {
+          if (!Barriers.includes(updatedCanvas[y + j][x + i])) {
             updatedCanvas[y + j][x + i] = c;
             console.log("Coloring: ", x + i, y + j);
             setCanvas(updatedCanvas);
@@ -87,8 +88,11 @@ const drawCanvas = (canvas, setCanvas, newInstruction) => {
 
       break;
     }
-    case "Q": // TODO Quit input
+    case "Q": {
+      // TODO Quit input
+      setCanvas([]);
       break;
+    }
     default:
       // TODO invalid input
       break;
