@@ -50,28 +50,11 @@ const drawCanvas = (canvas, setCanvas, newInstruction) => {
       break;
     }
     case "R": {
-      // TODO Rectangle input
-      const x1 = Math.min(parseInt(commandBreak[1]), parseInt(commandBreak[3]));
-      const y1 = Math.min(parseInt(commandBreak[2]), parseInt(commandBreak[4]));
-      const x2 = Math.max(parseInt(commandBreak[1]), parseInt(commandBreak[3]));
-      const y2 = Math.max(parseInt(commandBreak[2]), parseInt(commandBreak[4]));
-
-      //   // horizontal line
-      //     const horizontalLength = x2 - x1 + 1;
-      //     const horizontalLine = new Array(horizontalLength).fill("x");
-      //     const topRow = updatedCanvas[y1];
-      //     topRow.splice(x1, horizontalLength, ...horizontalLine);
-      //     updatedCanvas[y1] = topRow;
-      //     const bottomRow = updatedCanvas[y2];
-      //     bottomRow.splice(x1, horizontalLength, ...horizontalLine);
-      //     updatedCanvas[y1] = bottomRow;
-
-      // //   vertical line
-      //   for (let y = y1; y <= y2; y++) {
-      //     updatedCanvas[y][x1] = "x";
-      //     updatedCanvas[y][x2] = "x";
-      //   }
-      //   setCanvas(updatedCanvas);
+      //Rectangle input
+      const x1 = parseInt(commandBreak[1]);
+      const y1 = parseInt(commandBreak[2]);
+      const x2 = parseInt(commandBreak[3]);
+      const y2 = parseInt(commandBreak[4]);
 
       //horizontal line (improved)
       drawCanvas(canvas, setCanvas, `L ${x1} ${y1} ${x2} ${y1}`);
@@ -82,8 +65,11 @@ const drawCanvas = (canvas, setCanvas, newInstruction) => {
 
       break;
     }
-    case "B": // TODO Bucket input
+    case "B": {
+      // TODO Bucket input
+
       break;
+    }
     case "Q": // TODO Quit input
       break;
     default:
