@@ -1,8 +1,8 @@
 const drawCanvas = (canvas, setCanvas, newInstruction) => {
-  console.log(canvas);
+  // console.log(canvas);
   const updatedCanvas = canvas;
   const commandBreak = newInstruction.split(" ");
-  switch (newInstruction[0]) {
+  switch (commandBreak[0]) {
     case "C": {
       // Canvas input
       const width = parseInt(commandBreak[1]);
@@ -67,6 +67,23 @@ const drawCanvas = (canvas, setCanvas, newInstruction) => {
     }
     case "B": {
       // TODO Bucket input
+      const x = parseInt(commandBreak[1]);
+      const y = parseInt(commandBreak[2]);
+      const c = commandBreak[3];
+      console.log(commandBreak);
+      for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+          console.log("Evaluating: ", x + i, y + j);
+          if (updatedCanvas[y + j][x + i] === null) {
+            updatedCanvas[y + j][x + i] = c;
+            console.log("Coloring: ", x + i, y + j);
+            setCanvas(updatedCanvas);
+            if (!(i === 0 && j === 0)) {
+              drawCanvas(updatedCanvas, setCanvas, `B ${x + i} ${y + j} ${c}`);
+            }
+          }
+        }
+      }
 
       break;
     }
